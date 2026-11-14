@@ -1,0 +1,44 @@
+# Configuración del pipeline "Alerta de riesgo financiero empresarial"
+# Fuente: Superintendencia de Sociedades, Estados Financieros NIIF (datos.gov.co), CC BY-SA 4.0
+
+datasets:
+  balance: pfdp-zks5      # Estado de Situación Financiera (formato largo concepto-valor)
+  resultados: prwj-nzxa   # Estado de Resultado Integral
+  caratula: 6hqw-m3dm     # Carátula: razón social, CIIU, domicilio
+
+# Cortes anuales (31 de diciembre) que se descargan.
+# El último año se puntúa; los anteriores se usan para entrenar, validar y probar.
+anios: [2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025]
+
+# Tipos de reporte que se descartan (se busca el texto en PUNTO_ENTRADA, sin tildes ni mayúsculas)
+excluir_punto_entrada: ["consolidad"]
+
+# Unidad en que vienen los valores del dataset (solo para mostrar cifras en la página).
+# Verifícalo con un par de empresas conocidas antes de publicar.
+unidad_valor: "miles de pesos"
+
+# Semáforo: percentiles de probabilidad entre las empresas puntuadas.
+# Las empresas que ya están en dificultad en el último año van directo a rojo.
+semaforo:
+  rojo_desde_percentil: 0.90
+  amarillo_desde_percentil: 0.70
+
+# Filtro mínimo de calidad: empresas con activos totales mayores que este valor (en la unidad del dataset)
+min_activos: 100
+
+xgboost:
+  max_depth: 4
+  eta: 0.05
+  subsample: 0.8
+  colsample_bytree: 0.8
+  min_child_weight: 5
+  reg_lambda: 1.0
+  num_boost_round: 2000
+  early_stopping_rounds: 100
+  seed: 42
+
+# Datos que aparecen en el pie de la página
+autoria:
+  nombre: "Yanilsen Barragán García"
+  enlace: ""        # tu perfil de LinkedIn, por ejemplo https://www.linkedin.com/in/tu-usuario
+repositorio: ""     # enlace al repositorio de GitHub
