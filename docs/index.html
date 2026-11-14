@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Alerta de riesgo financiero empresarial en Colombia</title>
+<meta name="description" content="Semáforo de salud financiera para empresas que reportan a Supersociedades: XGBoost frente al Z'' de Altman, con explicaciones SHAP por empresa.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="¿Qué empresas colombianas podrían entrar en dificultad financiera?">
+<meta property="og:description" content="Busca una empresa por nombre o NIT y mira su semáforo, su Z'' de Altman y qué indicadores explican su riesgo.">
+<meta property="og:image" content="og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='7' r='5' fill='%23B42318'/><circle cx='16' cy='16' r='5' fill='%23B7791F'/><circle cx='16' cy='25' r='5' fill='%232F7A4E'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&family=Spectral:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<a class="saltar" href="#explorador">Ir al buscador</a>
+
+<div id="aviso-demo" class="aviso" hidden>
+  Esta es una versión de demostración con empresas y cifras inventadas. Ejecuta el flujo de GitHub Actions para cargar los datos reales de Supersociedades.
+</div>
+
+<header class="portada">
+  <div class="contenedor">
+    <h1>¿Qué empresas colombianas podrían entrar en dificultad financiera el próximo año?</h1>
+    <p class="entrada" id="entrada">Un modelo de machine learning entrenado con los estados financieros que las empresas reportan a la Superintendencia de Sociedades.</p>
+    <label class="buscador" for="q">
+      <span class="visually-hidden">Buscar empresa por nombre o NIT</span>
+      <svg aria-hidden="true" viewBox="0 0 24 24" width="22" height="22"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M15.5 15.5 21 21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      <input id="q" type="search" autocomplete="off" placeholder="Busca una empresa por nombre o NIT">
+    </label>
+  </div>
+
+  <figure class="espectro contenedor" aria-describedby="espectro-pie">
+    <canvas id="espectro" height="120" role="img" aria-label="Distribución de todas las empresas ordenadas de mayor a menor riesgo"></canvas>
+    <div id="espectro-tip" class="espectro-tip" hidden></div>
+    <figcaption id="espectro-pie" class="espectro-pie"></figcaption>
+  </figure>
+</header>
+
+<main>
+  <section id="explorador" class="contenedor explorador" aria-labelledby="t-explorador">
+    <h2 id="t-explorador">Explora las empresas</h2>
+    <div class="filtros" role="group" aria-label="Filtros">
+      <label>Sector<select id="f-sector"><option value="">Todos</option></select></label>
+      <label>Región<select id="f-region"><option value="">Todas</option></select></label>
+      <label>Departamento<select id="f-depto"><option value="">Todos</option></select></label>
+      <label>Ordenar por<select id="f-orden">
+        <option value="riesgo">Mayor riesgo</option>
+        <option value="nombre">Nombre</option>
+        <option value="ingresos">Ingresos</option>
+      </select></label>
+      <fieldset class="chips" id="f-sem">
+        <legend>Semáforo</legend>
+      </fieldset>
+    </div>
+
+    <div class="mesa">
+      <div class="lista">
+        <p id="conteo" class="conteo" aria-live="polite"></p>
+        <table>
+          <thead><tr><th scope="col">Empresa</th><th scope="col" class="num">Prob.</th><th scope="col">Estado</th></tr></thead>
+          <tbody id="filas"></tbody>
+        </table>
+        <button id="mas" class="boton-sec" type="button" hidden>Mostrar 30 más</button>
+      </div>
+      <aside id="ficha" class="ficha" aria-live="polite">
+        <p class="ficha-vacia">Elige una empresa de la lista o de la barra de arriba para ver su ficha.</p>
+      </aside>
+    </div>
+  </section>
+
+  <section class="contenedor bloque" aria-labelledby="t-comparacion">
+    <h2 id="t-comparacion">Altman frente a machine learning</h2>
+    <p class="intro" id="intro-comparacion"></p>
+    <div class="dos">
+      <figure>
+        <svg id="roc" viewBox="0 0 360 360" role="img" aria-labelledby="roc-titulo"><title id="roc-titulo">Curvas ROC de los tres modelos en el año de prueba</title></svg>
+        <figcaption>Curva ROC en el año de prueba. Cuanto más arriba y a la izquierda, mejor separa el modelo a las empresas que se deterioran.</figcaption>
+      </figure>
+      <div>
+        <table class="metricas" id="tabla-metricas"></table>
+        <p class="nota" id="nota-zonas"></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="contenedor bloque" aria-labelledby="t-factores">
+    <h2 id="t-factores">Qué explica el riesgo</h2>
+    <p class="intro">Peso promedio de cada familia de indicadores en las predicciones, medido con valores SHAP. Se suman las contribuciones absolutas de los indicadores de cada familia.</p>
+    <div class="dos">
+      <div id="familias" class="barras"></div>
+      <div id="variables" class="barras barras-finas"></div>
+    </div>
+  </section>
+
+  <section class="contenedor bloque" aria-labelledby="t-sectores">
+    <h2 id="t-sectores">Por sector</h2>
+    <p class="intro">Composición del semáforo en cada macrosector, ordenado por la proporción de empresas en alerta (riesgo alto o en dificultad).</p>
+    <table class="sectores" id="tabla-sectores"></table>
+  </section>
+
+  <section class="contenedor bloque metodo" aria-labelledby="t-metodo">
+    <h2 id="t-metodo">Cómo se construyó</h2>
+    <div id="metodo"></div>
+  </section>
+</main>
+
+<footer class="contenedor pie">
+  <p id="pie-fuente"></p>
+  <p>Este análisis es un ejercicio académico y no es una calificación de riesgo crediticio ni una recomendación de inversión.</p>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>

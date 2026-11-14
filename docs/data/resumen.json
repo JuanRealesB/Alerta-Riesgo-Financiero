@@ -1,0 +1,1265 @@
+{
+ "meta": {
+  "anio_puntuado": 2025,
+  "generado": "2026-11-13",
+  "n_empresas": 4802,
+  "unidad": "miles de pesos",
+  "demo": true,
+  "fuente": "Superintendencia de Sociedades, Estados Financieros NIIF (datos.gov.co)",
+  "licencia": "CC BY-SA 4.0",
+  "umbrales": {
+   "rojo_desde_percentil": 0.9,
+   "amarillo_desde_percentil": 0.7
+  },
+  "autoria": {
+   "nombre": "Yanilsen Barragán García",
+   "enlace": ""
+  },
+  "repositorio": ""
+ },
+ "semaforo": {
+  "dificultad": 1209,
+  "rojo": 360,
+  "amarillo": 718,
+  "verde": 2515
+ },
+ "en_dificultad_actual": 1209,
+ "modelo": {
+  "anios_entrenamiento": [
+   2018,
+   2019,
+   2020,
+   2021,
+   2022
+  ],
+  "anio_validacion": 2023,
+  "anio_prueba": 2024,
+  "n_entrenamiento": 17596,
+  "n_validacion": 3414,
+  "n_prueba": 3416,
+  "tasa_base_prueba": 0.1534,
+  "mejor_iteracion": 105,
+  "metricas": [
+   {
+    "modelo": "Z'' de Altman (coeficientes originales)",
+    "auc_roc": 0.767,
+    "auc_pr": 0.375,
+    "brier": null,
+    "captura_top10": 0.281
+   },
+   {
+    "modelo": "Logística con razones de Altman",
+    "auc_roc": 0.783,
+    "auc_pr": 0.411,
+    "brier": 0.1112,
+    "captura_top10": 0.3
+   },
+   {
+    "modelo": "XGBoost con 16 indicadores + sector y región",
+    "auc_roc": 0.79,
+    "auc_pr": 0.405,
+    "brier": 0.1103,
+    "captura_top10": 0.288
+   }
+  ],
+  "altman_zonas": {
+   "peligro_precision": 0.518,
+   "peligro_recall": 0.135,
+   "fraccion_en_peligro": 0.04,
+   "xgb_mismo_tamano_precision": 0.569,
+   "xgb_mismo_tamano_recall": 0.149
+  },
+  "roc": {
+   "altman": [
+    [
+     0.0,
+     0.0019
+    ],
+    [
+     0.0169,
+     0.1145
+    ],
+    [
+     0.0339,
+     0.1889
+    ],
+    [
+     0.0508,
+     0.2309
+    ],
+    [
+     0.0678,
+     0.2824
+    ],
+    [
+     0.0847,
+     0.3321
+    ],
+    [
+     0.1017,
+     0.3626
+    ],
+    [
+     0.1186,
+     0.4141
+    ],
+    [
+     0.1356,
+     0.4466
+    ],
+    [
+     0.1525,
+     0.4828
+    ],
+    [
+     0.1695,
+     0.5019
+    ],
+    [
+     0.1864,
+     0.521
+    ],
+    [
+     0.2034,
+     0.542
+    ],
+    [
+     0.2203,
+     0.5821
+    ],
+    [
+     0.2373,
+     0.6011
+    ],
+    [
+     0.2542,
+     0.6183
+    ],
+    [
+     0.2712,
+     0.6546
+    ],
+    [
+     0.2881,
+     0.6813
+    ],
+    [
+     0.3051,
+     0.6927
+    ],
+    [
+     0.322,
+     0.708
+    ],
+    [
+     0.339,
+     0.7347
+    ],
+    [
+     0.3559,
+     0.7462
+    ],
+    [
+     0.3729,
+     0.7615
+    ],
+    [
+     0.3898,
+     0.7767
+    ],
+    [
+     0.4068,
+     0.792
+    ],
+    [
+     0.4237,
+     0.8034
+    ],
+    [
+     0.4407,
+     0.8183
+    ],
+    [
+     0.4576,
+     0.8435
+    ],
+    [
+     0.4746,
+     0.8569
+    ],
+    [
+     0.4915,
+     0.8683
+    ],
+    [
+     0.5085,
+     0.8779
+    ],
+    [
+     0.5254,
+     0.8855
+    ],
+    [
+     0.5424,
+     0.8969
+    ],
+    [
+     0.5593,
+     0.9122
+    ],
+    [
+     0.5763,
+     0.9237
+    ],
+    [
+     0.5932,
+     0.9332
+    ],
+    [
+     0.6102,
+     0.9332
+    ],
+    [
+     0.6271,
+     0.9389
+    ],
+    [
+     0.6441,
+     0.9408
+    ],
+    [
+     0.661,
+     0.9504
+    ],
+    [
+     0.678,
+     0.9542
+    ],
+    [
+     0.6949,
+     0.958
+    ],
+    [
+     0.7119,
+     0.9599
+    ],
+    [
+     0.7288,
+     0.9637
+    ],
+    [
+     0.7458,
+     0.9637
+    ],
+    [
+     0.7627,
+     0.9695
+    ],
+    [
+     0.7797,
+     0.9733
+    ],
+    [
+     0.7966,
+     0.9733
+    ],
+    [
+     0.8136,
+     0.9771
+    ],
+    [
+     0.8305,
+     0.9809
+    ],
+    [
+     0.8475,
+     0.9828
+    ],
+    [
+     0.8644,
+     0.9828
+    ],
+    [
+     0.8814,
+     0.9828
+    ],
+    [
+     0.8983,
+     0.9866
+    ],
+    [
+     0.9153,
+     0.9905
+    ],
+    [
+     0.9322,
+     0.9924
+    ],
+    [
+     0.9492,
+     0.9981
+    ],
+    [
+     0.9661,
+     0.9981
+    ],
+    [
+     0.9831,
+     1.0
+    ],
+    [
+     1.0,
+     1.0
+    ]
+   ],
+   "logit": [
+    [
+     0.0,
+     0.0153
+    ],
+    [
+     0.0169,
+     0.145
+    ],
+    [
+     0.0339,
+     0.2137
+    ],
+    [
+     0.0508,
+     0.2729
+    ],
+    [
+     0.0678,
+     0.313
+    ],
+    [
+     0.0847,
+     0.3492
+    ],
+    [
+     0.1017,
+     0.3817
+    ],
+    [
+     0.1186,
+     0.4332
+    ],
+    [
+     0.1356,
+     0.4599
+    ],
+    [
+     0.1525,
+     0.4866
+    ],
+    [
+     0.1695,
+     0.5191
+    ],
+    [
+     0.1864,
+     0.5458
+    ],
+    [
+     0.2034,
+     0.5744
+    ],
+    [
+     0.2203,
+     0.6107
+    ],
+    [
+     0.2373,
+     0.6336
+    ],
+    [
+     0.2542,
+     0.6737
+    ],
+    [
+     0.2712,
+     0.6927
+    ],
+    [
+     0.2881,
+     0.7156
+    ],
+    [
+     0.3051,
+     0.7366
+    ],
+    [
+     0.322,
+     0.75
+    ],
+    [
+     0.339,
+     0.7615
+    ],
+    [
+     0.3559,
+     0.7805
+    ],
+    [
+     0.3729,
+     0.7958
+    ],
+    [
+     0.3898,
+     0.8034
+    ],
+    [
+     0.4068,
+     0.8168
+    ],
+    [
+     0.4237,
+     0.8282
+    ],
+    [
+     0.4407,
+     0.8511
+    ],
+    [
+     0.4576,
+     0.8607
+    ],
+    [
+     0.4746,
+     0.8683
+    ],
+    [
+     0.4915,
+     0.8779
+    ],
+    [
+     0.5085,
+     0.8893
+    ],
+    [
+     0.5254,
+     0.8989
+    ],
+    [
+     0.5424,
+     0.9084
+    ],
+    [
+     0.5593,
+     0.9179
+    ],
+    [
+     0.5763,
+     0.9256
+    ],
+    [
+     0.5932,
+     0.9294
+    ],
+    [
+     0.6102,
+     0.9351
+    ],
+    [
+     0.6271,
+     0.9408
+    ],
+    [
+     0.6441,
+     0.9447
+    ],
+    [
+     0.661,
+     0.9542
+    ],
+    [
+     0.678,
+     0.958
+    ],
+    [
+     0.6949,
+     0.9599
+    ],
+    [
+     0.7119,
+     0.9637
+    ],
+    [
+     0.7288,
+     0.9656
+    ],
+    [
+     0.7458,
+     0.9733
+    ],
+    [
+     0.7627,
+     0.9752
+    ],
+    [
+     0.7797,
+     0.9809
+    ],
+    [
+     0.7966,
+     0.9847
+    ],
+    [
+     0.8136,
+     0.9885
+    ],
+    [
+     0.8305,
+     0.9885
+    ],
+    [
+     0.8475,
+     0.9885
+    ],
+    [
+     0.8644,
+     0.9924
+    ],
+    [
+     0.8814,
+     0.9962
+    ],
+    [
+     0.8983,
+     0.9962
+    ],
+    [
+     0.9153,
+     0.9962
+    ],
+    [
+     0.9322,
+     0.9981
+    ],
+    [
+     0.9492,
+     0.9981
+    ],
+    [
+     0.9661,
+     0.9981
+    ],
+    [
+     0.9831,
+     1.0
+    ],
+    [
+     1.0,
+     1.0
+    ]
+   ],
+   "xgboost": [
+    [
+     0.0,
+     0.0134
+    ],
+    [
+     0.0169,
+     0.1126
+    ],
+    [
+     0.0339,
+     0.1985
+    ],
+    [
+     0.0508,
+     0.2424
+    ],
+    [
+     0.0678,
+     0.2901
+    ],
+    [
+     0.0847,
+     0.3378
+    ],
+    [
+     0.1017,
+     0.3836
+    ],
+    [
+     0.1186,
+     0.4256
+    ],
+    [
+     0.1356,
+     0.4695
+    ],
+    [
+     0.1525,
+     0.4981
+    ],
+    [
+     0.1695,
+     0.5439
+    ],
+    [
+     0.1864,
+     0.5782
+    ],
+    [
+     0.2034,
+     0.5954
+    ],
+    [
+     0.2203,
+     0.6279
+    ],
+    [
+     0.2373,
+     0.6565
+    ],
+    [
+     0.2542,
+     0.687
+    ],
+    [
+     0.2712,
+     0.7176
+    ],
+    [
+     0.2881,
+     0.7385
+    ],
+    [
+     0.3051,
+     0.7481
+    ],
+    [
+     0.322,
+     0.7672
+    ],
+    [
+     0.339,
+     0.7824
+    ],
+    [
+     0.3559,
+     0.792
+    ],
+    [
+     0.3729,
+     0.8111
+    ],
+    [
+     0.3898,
+     0.8263
+    ],
+    [
+     0.4068,
+     0.8416
+    ],
+    [
+     0.4237,
+     0.8607
+    ],
+    [
+     0.4407,
+     0.8702
+    ],
+    [
+     0.4576,
+     0.8817
+    ],
+    [
+     0.4746,
+     0.8855
+    ],
+    [
+     0.4915,
+     0.8893
+    ],
+    [
+     0.5085,
+     0.8969
+    ],
+    [
+     0.5254,
+     0.9027
+    ],
+    [
+     0.5424,
+     0.9103
+    ],
+    [
+     0.5593,
+     0.916
+    ],
+    [
+     0.5763,
+     0.9198
+    ],
+    [
+     0.5932,
+     0.9332
+    ],
+    [
+     0.6102,
+     0.9389
+    ],
+    [
+     0.6271,
+     0.9485
+    ],
+    [
+     0.6441,
+     0.9523
+    ],
+    [
+     0.661,
+     0.9561
+    ],
+    [
+     0.678,
+     0.9561
+    ],
+    [
+     0.6949,
+     0.9656
+    ],
+    [
+     0.7119,
+     0.9676
+    ],
+    [
+     0.7288,
+     0.9828
+    ],
+    [
+     0.7458,
+     0.9828
+    ],
+    [
+     0.7627,
+     0.9847
+    ],
+    [
+     0.7797,
+     0.9866
+    ],
+    [
+     0.7966,
+     0.9866
+    ],
+    [
+     0.8136,
+     0.9885
+    ],
+    [
+     0.8305,
+     0.9905
+    ],
+    [
+     0.8475,
+     0.9943
+    ],
+    [
+     0.8644,
+     0.9943
+    ],
+    [
+     0.8814,
+     0.9943
+    ],
+    [
+     0.8983,
+     0.9981
+    ],
+    [
+     0.9153,
+     0.9981
+    ],
+    [
+     0.9322,
+     0.9981
+    ],
+    [
+     0.9492,
+     0.9981
+    ],
+    [
+     0.9661,
+     1.0
+    ],
+    [
+     0.9831,
+     1.0
+    ],
+    [
+     1.0,
+     1.0
+    ]
+   ]
+  },
+  "importancia_familias": [
+   {
+    "familia": "Rentabilidad",
+    "valor": 0.9029
+   },
+   {
+    "familia": "Endeudamiento",
+    "valor": 0.2683
+   },
+   {
+    "familia": "Liquidez",
+    "valor": 0.2607
+   },
+   {
+    "familia": "Sector y región",
+    "valor": 0.1874
+   },
+   {
+    "familia": "Actividad",
+    "valor": 0.1061
+   },
+   {
+    "familia": "Tamaño",
+    "valor": 0.0146
+   }
+  ],
+  "importancia_variables": [
+   {
+    "variable": "roa",
+    "familia": "Rentabilidad",
+    "valor": 0.3561
+   },
+   {
+    "variable": "utilidades_ret_activos",
+    "familia": "Rentabilidad",
+    "valor": 0.2304
+   },
+   {
+    "variable": "razon_corriente",
+    "familia": "Liquidez",
+    "valor": 0.1974
+   },
+   {
+    "variable": "margen_neto",
+    "familia": "Rentabilidad",
+    "valor": 0.1953
+   },
+   {
+    "variable": "sector",
+    "familia": "Sector y región",
+    "valor": 0.1852
+   },
+   {
+    "variable": "patrimonio_pasivos",
+    "familia": "Endeudamiento",
+    "valor": 0.1366
+   },
+   {
+    "variable": "margen_operacional",
+    "familia": "Rentabilidad",
+    "valor": 0.0975
+   },
+   {
+    "variable": "endeudamiento",
+    "familia": "Endeudamiento",
+    "valor": 0.0942
+   },
+   {
+    "variable": "crecimiento_ingresos",
+    "familia": "Actividad",
+    "valor": 0.0619
+   },
+   {
+    "variable": "rotacion_activos",
+    "familia": "Actividad",
+    "valor": 0.0441
+   },
+   {
+    "variable": "prueba_acida",
+    "familia": "Liquidez",
+    "valor": 0.0315
+   },
+   {
+    "variable": "roe",
+    "familia": "Rentabilidad",
+    "valor": 0.0237
+   },
+   {
+    "variable": "cobertura_intereses",
+    "familia": "Endeudamiento",
+    "valor": 0.02
+   },
+   {
+    "variable": "kt_activos",
+    "familia": "Liquidez",
+    "valor": 0.0178
+   },
+   {
+    "variable": "concentracion_cp",
+    "familia": "Endeudamiento",
+    "valor": 0.0175
+   },
+   {
+    "variable": "log_activos",
+    "familia": "Tamaño",
+    "valor": 0.0146
+   },
+   {
+    "variable": "efectivo_activos",
+    "familia": "Liquidez",
+    "valor": 0.014
+   },
+   {
+    "variable": "region",
+    "familia": "Sector y región",
+    "valor": 0.0023
+   }
+  ]
+ },
+ "por_sector": [
+  {
+   "nombre": "Inmobiliario",
+   "n": 417,
+   "dificultad": 187,
+   "rojo": 72,
+   "amarillo": 85,
+   "verde": 73,
+   "prob_media": 0.2893,
+   "pct_alerta": 0.6211
+  },
+  {
+   "nombre": "Transporte y logística",
+   "n": 279,
+   "dificultad": 131,
+   "rojo": 27,
+   "amarillo": 46,
+   "verde": 75,
+   "prob_media": 0.2201,
+   "pct_alerta": 0.5663
+  },
+  {
+   "nombre": "Construcción",
+   "n": 656,
+   "dificultad": 200,
+   "rojo": 58,
+   "amarillo": 123,
+   "verde": 275,
+   "prob_media": 0.1859,
+   "pct_alerta": 0.3933
+  },
+  {
+   "nombre": "Agropecuario",
+   "n": 228,
+   "dificultad": 67,
+   "rojo": 21,
+   "amarillo": 49,
+   "verde": 91,
+   "prob_media": 0.1832,
+   "pct_alerta": 0.386
+  },
+  {
+   "nombre": "Educación",
+   "n": 234,
+   "dificultad": 47,
+   "rojo": 30,
+   "amarillo": 40,
+   "verde": 117,
+   "prob_media": 0.1778,
+   "pct_alerta": 0.3291
+  },
+  {
+   "nombre": "Comercio",
+   "n": 1133,
+   "dificultad": 273,
+   "rojo": 72,
+   "amarillo": 165,
+   "verde": 623,
+   "prob_media": 0.1413,
+   "pct_alerta": 0.3045
+  },
+  {
+   "nombre": "Servicios públicos",
+   "n": 165,
+   "dificultad": 28,
+   "rojo": 19,
+   "amarillo": 25,
+   "verde": 93,
+   "prob_media": 0.1692,
+   "pct_alerta": 0.2848
+  },
+  {
+   "nombre": "Alojamiento y comida",
+   "n": 203,
+   "dificultad": 44,
+   "rojo": 7,
+   "amarillo": 27,
+   "verde": 125,
+   "prob_media": 0.1232,
+   "pct_alerta": 0.2512
+  },
+  {
+   "nombre": "Servicios profesionales",
+   "n": 344,
+   "dificultad": 61,
+   "rojo": 22,
+   "amarillo": 41,
+   "verde": 220,
+   "prob_media": 0.1215,
+   "pct_alerta": 0.2413
+  },
+  {
+   "nombre": "Sin clasificar",
+   "n": 9,
+   "dificultad": 2,
+   "rojo": 0,
+   "amarillo": 1,
+   "verde": 6,
+   "prob_media": 0.098,
+   "pct_alerta": 0.2222
+  },
+  {
+   "nombre": "Minero-energético",
+   "n": 172,
+   "dificultad": 33,
+   "rojo": 1,
+   "amarillo": 15,
+   "verde": 123,
+   "prob_media": 0.0743,
+   "pct_alerta": 0.1977
+  },
+  {
+   "nombre": "Manufactura",
+   "n": 453,
+   "dificultad": 70,
+   "rojo": 18,
+   "amarillo": 41,
+   "verde": 324,
+   "prob_media": 0.1102,
+   "pct_alerta": 0.1943
+  },
+  {
+   "nombre": "Salud",
+   "n": 241,
+   "dificultad": 39,
+   "rojo": 7,
+   "amarillo": 27,
+   "verde": 168,
+   "prob_media": 0.1051,
+   "pct_alerta": 0.1909
+  },
+  {
+   "nombre": "Información y comunicaciones",
+   "n": 268,
+   "dificultad": 27,
+   "rojo": 6,
+   "amarillo": 33,
+   "verde": 202,
+   "prob_media": 0.0963,
+   "pct_alerta": 0.1231
+  }
+ ],
+ "por_region": [
+  {
+   "nombre": "Orinoquía-Amazonía",
+   "n": 84,
+   "dificultad": 19,
+   "rojo": 10,
+   "amarillo": 8,
+   "verde": 47,
+   "prob_media": 0.1653,
+   "pct_alerta": 0.3452
+  },
+  {
+   "nombre": "Santanderes",
+   "n": 353,
+   "dificultad": 96,
+   "rojo": 25,
+   "amarillo": 52,
+   "verde": 180,
+   "prob_media": 0.151,
+   "pct_alerta": 0.3428
+  },
+  {
+   "nombre": "Caribe",
+   "n": 787,
+   "dificultad": 199,
+   "rojo": 64,
+   "amarillo": 119,
+   "verde": 405,
+   "prob_media": 0.1549,
+   "pct_alerta": 0.3342
+  },
+  {
+   "nombre": "Bogotá-Cundinamarca",
+   "n": 1894,
+   "dificultad": 485,
+   "rojo": 135,
+   "amarillo": 282,
+   "verde": 992,
+   "prob_media": 0.1507,
+   "pct_alerta": 0.3273
+  },
+  {
+   "nombre": "Antioquia-Eje Cafetero",
+   "n": 1000,
+   "dificultad": 249,
+   "rojo": 75,
+   "amarillo": 152,
+   "verde": 524,
+   "prob_media": 0.1478,
+   "pct_alerta": 0.324
+  },
+  {
+   "nombre": "Centro-Oriente",
+   "n": 177,
+   "dificultad": 42,
+   "rojo": 14,
+   "amarillo": 20,
+   "verde": 101,
+   "prob_media": 0.1365,
+   "pct_alerta": 0.3164
+  },
+  {
+   "nombre": "Pacífica",
+   "n": 498,
+   "dificultad": 117,
+   "rojo": 37,
+   "amarillo": 84,
+   "verde": 260,
+   "prob_media": 0.1573,
+   "pct_alerta": 0.3092
+  },
+  {
+   "nombre": "Sin dato",
+   "n": 9,
+   "dificultad": 2,
+   "rojo": 0,
+   "amarillo": 1,
+   "verde": 6,
+   "prob_media": 0.098,
+   "pct_alerta": 0.2222
+  }
+ ],
+ "medianas_sector": {
+  "Agropecuario": {
+   "razon_corriente": 1.4527,
+   "endeudamiento": 0.4783,
+   "roa": 0.0133,
+   "margen_operacional": 0.0807,
+   "cobertura_intereses": 1.795,
+   "crecimiento_ingresos": 0.0359
+  },
+  "Alojamiento y comida": {
+   "razon_corriente": 1.5587,
+   "endeudamiento": 0.4418,
+   "roa": 0.0444,
+   "margen_operacional": 0.067,
+   "cobertura_intereses": 3.6296,
+   "crecimiento_ingresos": 0.0949
+  },
+  "Comercio": {
+   "razon_corriente": 1.491,
+   "endeudamiento": 0.4607,
+   "roa": 0.0485,
+   "margen_operacional": 0.0585,
+   "cobertura_intereses": 3.5745,
+   "crecimiento_ingresos": 0.0344
+  },
+  "Construcción": {
+   "razon_corriente": 1.4858,
+   "endeudamiento": 0.4737,
+   "roa": 0.0124,
+   "margen_operacional": 0.0905,
+   "cobertura_intereses": 1.7155,
+   "crecimiento_ingresos": 0.0565
+  },
+  "Educación": {
+   "razon_corriente": 1.4812,
+   "endeudamiento": 0.4557,
+   "roa": 0.029,
+   "margen_operacional": 0.0776,
+   "cobertura_intereses": 2.7247,
+   "crecimiento_ingresos": 0.0751
+  },
+  "Información y comunicaciones": {
+   "razon_corriente": 1.4779,
+   "endeudamiento": 0.4757,
+   "roa": 0.0605,
+   "margen_operacional": 0.1036,
+   "cobertura_intereses": 4.3455,
+   "crecimiento_ingresos": -0.0006
+  },
+  "Inmobiliario": {
+   "razon_corriente": 1.5063,
+   "endeudamiento": 0.4524,
+   "roa": 0.0006,
+   "margen_operacional": 0.1484,
+   "cobertura_intereses": 1.0259,
+   "crecimiento_ingresos": 0.0238
+  },
+  "Manufactura": {
+   "razon_corriente": 1.529,
+   "endeudamiento": 0.453,
+   "roa": 0.0461,
+   "margen_operacional": 0.0807,
+   "cobertura_intereses": 3.5858,
+   "crecimiento_ingresos": 0.0483
+  },
+  "Minero-energético": {
+   "razon_corriente": 1.5333,
+   "endeudamiento": 0.4967,
+   "roa": 0.0295,
+   "margen_operacional": 0.1073,
+   "cobertura_intereses": 2.4937,
+   "crecimiento_ingresos": 0.0478
+  },
+  "Salud": {
+   "razon_corriente": 1.656,
+   "endeudamiento": 0.4069,
+   "roa": 0.0355,
+   "margen_operacional": 0.091,
+   "cobertura_intereses": 3.6174,
+   "crecimiento_ingresos": 0.0408
+  },
+  "Servicios profesionales": {
+   "razon_corriente": 1.4102,
+   "endeudamiento": 0.4773,
+   "roa": 0.0405,
+   "margen_operacional": 0.0906,
+   "cobertura_intereses": 3.3527,
+   "crecimiento_ingresos": 0.0296
+  },
+  "Servicios públicos": {
+   "razon_corriente": 1.3416,
+   "endeudamiento": 0.508,
+   "roa": 0.0202,
+   "margen_operacional": 0.1552,
+   "cobertura_intereses": 2.0154,
+   "crecimiento_ingresos": 0.0277
+  },
+  "Sin clasificar": {
+   "razon_corriente": 1.4805,
+   "endeudamiento": 0.3481,
+   "roa": 0.0257,
+   "margen_operacional": 0.1084,
+   "cobertura_intereses": 2.3217,
+   "crecimiento_ingresos": null
+  },
+  "Transporte y logística": {
+   "razon_corriente": 1.3335,
+   "endeudamiento": 0.5399,
+   "roa": 0.0027,
+   "margen_operacional": 0.0389,
+   "cobertura_intereses": 1.1377,
+   "crecimiento_ingresos": 0.0092
+  },
+  "Todas": {
+   "razon_corriente": 1.4819,
+   "endeudamiento": 0.4657,
+   "roa": 0.025,
+   "margen_operacional": 0.084,
+   "cobertura_intereses": 2.4608,
+   "crecimiento_ingresos": 0.0377
+  }
+ }
+}
