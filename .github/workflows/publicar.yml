@@ -1,0 +1,112 @@
+name: Actualizar datos y publicar
+
+on:
+  workflow_dispatch:
+    inputs:
+      modo:
+        description: "Datos a usar"
+        type: choice
+        options: [reales, demo]
+        default: reales
+  schedule:
+    - cron: "0 6 5 * *"   # día 5 de cada mes, 1:00 a. m. hora de Colombia
+  push:
+    branches: [main]
+    paths: ["src/**", "docs/**", "config.yaml", ".github/workflows/publicar.yml"]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  construir:
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+    env:
+      PYTHONUNBUFFERED: "1"   # mensajes y errores en el orden en que ocurren
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - run: |
+          pip install -r requirements.txt
+          python -c "import pandas, numpy, xgboost, sklearn; print('pandas', pandas.__version__, 'numpy', numpy.__version__, 'xgboost', xgboost.__version__, 'sklearn', sklearn.__version__)"
+
+      # Recupera los años ya descargados en ejecuciones anteriores
+      - uses: actions/cache/restore@v4
+        with:
+          path: data/raw
+          key: raw-${{ github.run_id }}
+          restore-keys: raw-
+
+      - name: Pipeline
+        env:
+          SOCRATA_APP_TOKEN: ${{ secrets.SOCRATA_APP_TOKEN }}
+        run: |
+          if [ "${{ inputs.modo }}" = "demo" ]; then
+            python -m src.pipeline --demo
+          else
+            python -m src.pipeline
+          fi
+
+      # Guarda lo descargado aunque el pipeline falle, para no repetir la descarga
+      - name: Guardar descargas en caché
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: data/raw
+          key: raw-${{ github.run_id }}
+
+      # Si algo falla, deja los datos descargados disponibles para revisarlos
+      - name: Guardar datos crudos para revisión
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: datos-crudos
+          path: data/raw/
+          retention-days: 5
+          if-no-files-found: ignore
+
+      - name: Guardar reportes de diagnóstico
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: reportes
+          path: |
+            data/reportes/
+            data/demo/reportes/
+            data/metricas.json
+          if-no-files-found: ignore
+
+      - id: pages
+        uses: actions/configure-pages@v5
+
+      # LinkedIn necesita la dirección completa de la imagen de vista previa
+      - name: Enlaces absolutos para redes sociales
+        run: |
+          BASE="${{ steps.pages.outputs.base_url }}"
+          sed -i "s|content=\"og.png\"|content=\"${BASE}/og.png\"|" docs/index.html
+          sed -i "s|<meta property=\"og:type\" content=\"website\">|<meta property=\"og:type\" content=\"website\">\n<meta property=\"og:url\" content=\"${BASE}/\">|" docs/index.html
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs
+
+  publicar:
+    needs: construir
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.despliegue.outputs.page_url }}
+    steps:
+      - id: despliegue
+        uses: actions/deploy-pages@v4
