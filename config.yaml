@@ -39,6 +39,6 @@ xgboost:
 
 # Datos que aparecen en el pie de la página
 autoria:
-  nombre: "Yanilsen Barragán García"
-  enlace: ""        # tu perfil de LinkedIn, por ejemplo https://www.linkedin.com/in/tu-usuario
+  nombre: "Juan david Reales Barragán"
+  enlace: "https://www.linkedin.com/in/juan-reales-barragan/"        # tu perfil de LinkedIn, por ejemplo https://www.linkedin.com/in/tu-usuario
 repositorio: ""     # enlace al repositorio de GitHub
